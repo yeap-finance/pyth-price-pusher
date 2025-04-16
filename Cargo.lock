@@ -428,7 +428,7 @@ dependencies = [
  "serde_bytes",
  "sha2 0.10.8",
  "sha2 0.9.9",
- "sha3 0.9.1",
+ "sha3",
  "signature 2.2.0",
  "static_assertions",
  "thiserror 1.0.69",
@@ -475,7 +475,7 @@ dependencies = [
  "rayon",
  "serde",
  "serde_bytes",
- "sha3 0.9.1",
+ "sha3",
  "static_assertions",
 ]
 
@@ -579,7 +579,7 @@ dependencies = [
  "serde_bytes",
  "sha2 0.10.8",
  "sha2 0.9.9",
- "sha3 0.9.1",
+ "sha3",
  "siphasher 0.3.11",
  "smallvec",
  "tempfile",
@@ -715,7 +715,7 @@ dependencies = [
  "move-vm-runtime",
  "move-vm-types",
  "sha2 0.9.9",
- "sha3 0.9.1",
+ "sha3",
  "smallvec",
 ]
 
@@ -1005,7 +1005,7 @@ dependencies = [
  "move-table-extension",
  "move-vm-runtime",
  "move-vm-types",
- "sha3 0.9.1",
+ "sha3",
  "smallvec",
 ]
 
@@ -1180,7 +1180,7 @@ dependencies = [
  "move-vm-runtime",
  "move-vm-types",
  "once_cell",
- "sha3 0.9.1",
+ "sha3",
 ]
 
 [[package]]
@@ -1935,35 +1935,12 @@ dependencies = [
 
 [[package]]
 name = "borsh"
-version = "0.9.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "15bf3650200d8bffa99015595e10f1fbd17de07abbc25bb067da79e769939bfa"
-dependencies = [
- "borsh-derive 0.9.3",
- "hashbrown 0.11.2",
-]
-
-[[package]]
-name = "borsh"
 version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "115e54d64eb62cdebad391c19efc9dce4981c690c85a33a12199d99bb9546fee"
 dependencies = [
- "borsh-derive 0.10.4",
+ "borsh-derive",
  "hashbrown 0.13.2",
-]
-
-[[package]]
-name = "borsh-derive"
-version = "0.9.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6441c552f230375d18e3cc377677914d2ca2b0d36e52129fe15450a2dce46775"
-dependencies = [
- "borsh-derive-internal 0.9.3",
- "borsh-schema-derive-internal 0.9.3",
- "proc-macro-crate 0.1.5",
- "proc-macro2",
- "syn 1.0.109",
 ]
 
 [[package]]
@@ -1972,21 +1949,10 @@ version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "831213f80d9423998dd696e2c5345aba6be7a0bd8cd19e31c5243e13df1cef89"
 dependencies = [
- "borsh-derive-internal 0.10.4",
- "borsh-schema-derive-internal 0.10.4",
+ "borsh-derive-internal",
+ "borsh-schema-derive-internal",
  "proc-macro-crate 0.1.5",
  "proc-macro2",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "borsh-derive-internal"
-version = "0.9.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5449c28a7b352f2d1e592a8a28bf139bc71afb0764a14f3c02500935d8c44065"
-dependencies = [
- "proc-macro2",
- "quote",
  "syn 1.0.109",
 ]
 
@@ -1995,17 +1961,6 @@ name = "borsh-derive-internal"
 version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "65d6ba50644c98714aa2a70d13d7df3cd75cd2b523a2b452bf010443800976b3"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "borsh-schema-derive-internal"
-version = "0.9.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cdbd5696d8bfa21d53d9fe39a714a18538bad11492a42d066dbbc395fb1951c0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2069,7 +2024,7 @@ dependencies = [
  "rand_core 0.6.4",
  "serde",
  "serde_derive",
- "sha3 0.9.1",
+ "sha3",
  "subtle-ng",
  "thiserror 1.0.69",
 ]
@@ -2091,20 +2046,6 @@ name = "bytemuck"
 version = "1.22.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6b1fc10dbac614ebc03540c9dbd60e83887fda27794998c6528f1782047d540"
-dependencies = [
- "bytemuck_derive",
-]
-
-[[package]]
-name = "bytemuck_derive"
-version = "1.9.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7ecc273b49b3205b83d648f0690daa588925572cc5063745bfe547fe7ec8e1a1"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.100",
-]
 
 [[package]]
 name = "byteorder"
@@ -3118,15 +3059,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "fast-math"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2465292146cdfc2011350fe3b1c616ac83cf0faeedb33463ba1c332ed8948d66"
-dependencies = [
- "ieee754",
-]
-
-[[package]]
 name = "fastrand"
 version = "2.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3558,15 +3490,6 @@ checksum = "459196ed295495a68f7d7fe1d84f6c4b7ff0e21fe3017b2f283c6fac3ad803c9"
 dependencies = [
  "cfg-if",
  "crunchy",
-]
-
-[[package]]
-name = "hashbrown"
-version = "0.11.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ab5ef0d4909ef3724cc8cce6ccc8572c5c817592e9285f5464f8e86f8bd3726e"
-dependencies = [
- "ahash 0.7.8",
 ]
 
 [[package]]
@@ -4140,12 +4063,6 @@ dependencies = [
  "icu_normalizer",
  "icu_properties",
 ]
-
-[[package]]
-name = "ieee754"
-version = "0.2.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9007da9cacbd3e6343da136e98b0d2df013f553d35bdec8b518f07bea768e19c"
 
 [[package]]
 name = "ignore"
@@ -5239,7 +5156,7 @@ dependencies = [
  "move-vm-runtime",
  "move-vm-types",
  "sha2 0.9.9",
- "sha3 0.9.1",
+ "sha3",
  "smallvec",
  "walkdir",
 ]
@@ -5264,7 +5181,7 @@ dependencies = [
  "move-core-types",
  "move-vm-runtime",
  "move-vm-types",
- "sha3 0.9.1",
+ "sha3",
  "smallvec",
 ]
 
@@ -5369,7 +5286,7 @@ dependencies = [
  "move-core-types",
  "parking_lot",
  "serde",
- "sha3 0.9.1",
+ "sha3",
  "smallbitvec",
  "smallvec",
  "triomphe",
@@ -6325,7 +6242,6 @@ dependencies = [
  "log",
  "mockito",
  "pyth-hermes-client",
- "pythnet-sdk",
  "reqwest 0.12.15",
  "serde",
  "serde_json",
@@ -6529,7 +6445,7 @@ source = "git+https://github.com/AftermathFinance/aftermath-sdk-rust.git?branch=
 dependencies = [
  "base64 0.22.1",
  "hex",
- "pyth-sdk 0.8.0",
+ "pyth-sdk",
  "reqwest 0.12.15",
  "serde",
  "strum 0.27.1",
@@ -6539,47 +6455,16 @@ dependencies = [
 
 [[package]]
 name = "pyth-sdk"
-version = "0.5.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f5c805ba3dfb5b7ed6a8ffa62ec38391f485a79c7cf6b3b11d3bd44fb0325824"
-dependencies = [
- "borsh 0.9.3",
- "borsh-derive 0.9.3",
- "hex",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "pyth-sdk"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1e7aeef4d5f0a9c98ff5af2ddd84a8b89919c512188305b497a9eb9afa97a949"
 dependencies = [
- "borsh 0.10.4",
- "borsh-derive 0.10.4",
+ "borsh",
+ "borsh-derive",
  "getrandom 0.2.15",
  "hex",
  "schemars",
  "serde",
-]
-
-[[package]]
-name = "pythnet-sdk"
-version = "2.3.1"
-dependencies = [
- "bincode",
- "borsh 0.10.4",
- "bytemuck",
- "byteorder",
- "fast-math",
- "hex",
- "pyth-sdk 0.5.0",
- "rustc_version",
- "serde",
- "sha3 0.10.8",
- "slow_primes",
- "thiserror 1.0.69",
 ]
 
 [[package]]
@@ -7595,16 +7480,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "sha3"
-version = "0.10.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "75872d278a8f37ef87fa0ddbda7802605cb18344497949862c0d4dcb291eba60"
-dependencies = [
- "digest 0.10.7",
- "keccak",
-]
-
-[[package]]
 name = "sharded-slab"
 version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -7723,15 +7598,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8f92a496fb766b417c996b9c5e57daf2f7ad3b0bebe1ccfca4856390e3d3bb67"
 dependencies = [
  "autocfg",
-]
-
-[[package]]
-name = "slow_primes"
-version = "0.1.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "58267dd2fbaa6dceecba9e3e106d2d90a2b02497c0e8b01b8759beccf5113938"
-dependencies = [
- "num 0.4.3",
 ]
 
 [[package]]

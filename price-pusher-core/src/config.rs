@@ -72,8 +72,8 @@ mod tests {
     use crate::types::EarlyUpdateConfig;
     use std::io::Write;
     use tempfile::NamedTempFile;
-    use tracing::info;
-    use log::log;
+    
+    
 
     #[test]
     fn test_load_valid_config() {

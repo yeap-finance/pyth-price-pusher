@@ -1,13 +1,12 @@
 use anyhow::{anyhow, Context, Result};
 use aptos_sdk::{
     move_types::identifier::Identifier,
-    rest_client::{aptos_api_types::ViewRequest, Client as AptosClient, PendingTransaction}, // Renamed Client to AptosClient
+    rest_client::{Client as AptosClient, PendingTransaction}, // Renamed Client to AptosClient
     transaction_builder::TransactionFactory,
     types::{
         account_address::AccountAddress,
         chain_id::ChainId,
-        ledger_info::LedgerInfo,
-        transaction::{authenticator::AuthenticationKey, EntryFunction, SignedTransaction, TransactionPayload}, // Import ModuleId
+        transaction::{authenticator::AuthenticationKey, EntryFunction, TransactionPayload}, // Import ModuleId
         LocalAccount, // Use LocalAccount for signing
     },
 };
@@ -16,17 +15,15 @@ use price_pusher_core::{
     chain::TargetChain,
     types::{HexString, PriceInfo, UnixTimestamp},
 };
-use serde::{Deserialize, Serialize}; // Add Serialize for Resource
-use serde_json::Value as JsonValue; // Use serde_json::Value
+use serde::Deserialize; // Add Serialize for Resource
+ // Use serde_json::Value
 use std::{
     collections::HashMap,
     fmt::{Debug, Formatter},
     str::FromStr,
-    sync::Arc, // Use Arc for AptosClient if needed elsewhere
-    time::Duration,
+    sync::Arc,
 };
 use aptos_sdk::move_types::language_storage::ModuleId;
-use aptos_sdk::rest_client::aptos_api_types::ViewFunction;
 use aptos_sdk::rest_client::AptosBaseUrl;
 use tokio::sync::Mutex; // For sequence number management
 use tracing::{debug, error, info, instrument, warn};

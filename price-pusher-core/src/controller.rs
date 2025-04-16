@@ -4,15 +4,10 @@ use crate::{
     // hermes::HermesClient, // Removed custom client import
     types::{DurationInSeconds, HexString, PriceConfig, PriceInfo, UnixTimestamp, UpdateCondition},
 };
-use anyhow::{Context, Result}; // Keep Result, Context
+use anyhow::Result; // Keep Result, Context
 use pyth_hermes_client::{EncodingType, PythClient as HermesClient, RpcPrice};
-use pythnet_sdk::{
-    legacy::BatchPriceAttestation, // Use legacy module, remove unused PriceAttestation
-    wire::v1::WormholeMessage,
-};
-use std::{collections::HashMap, str::FromStr, sync::Arc, time::Duration};
+use std::{collections::HashMap, sync::Arc, time::Duration};
 use bigdecimal::{BigDecimal, ToPrimitive, Zero};
-use bigdecimal::num_bigint::BigUint;
 use tokio::sync::Mutex; // For shared state if using separate listener task
 use tracing::{debug, error, info, instrument, warn};
 
@@ -231,16 +226,14 @@ impl<T: TargetChain + 'static> Controller<T> {
 
     async fn try_sync(&self,) -> Result<()> {
 
-        let mut latest_target_prices: HashMap<HexString, PriceInfo> = HashMap::new();
-
         // --- 1. Fetch Target Chain Prices ---
-        match self.target_chain
+        let latest_target_prices = match self.target_chain
             .get_latest_price_infos(&self.all_price_ids)
             .await
         {
             Ok(prices) => {
                 debug!(count = prices.len(), "Fetched latest target chain prices.");
-                latest_target_prices = prices; // Update local cache
+                prices // Update local cache
             }
             Err(e) => {
                 error!(error = %e, "Failed to fetch target chain prices. Skipping cycle.");
@@ -248,7 +241,7 @@ impl<T: TargetChain + 'static> Controller<T> {
                 tokio::time::sleep(self.pushing_frequency).await;
                 return Err(e);
             }
-        }
+        };
 
         // --- 2. Check Update Conditions ---
         let mut push_threshold_met = false;
@@ -377,15 +370,15 @@ async fn run_source_listener(
                     );
 
                     let mut prices_guard = latest_prices.lock().await;
-                    let mut updated_count = 0;
-                    let mut error_count = 0;
+                    let updated_count = 0;
+                    let error_count = 0;
 
                     // Process each VAA payload
                     // Note: get_latest_price_updates returns VAAs in the same order as requested IDs.
-                    for (i, vaa_payload_bytes) in update_data_list.parsed.as_ref().unwrap().iter().enumerate() {
-                        prices_guard.insert(vaa_payload_bytes.id.clone(), PriceInfo {
-                            price: vaa_payload_bytes.price,
-                            ema_price: vaa_payload_bytes.ema_price,
+                    for (_i, updated_data) in update_data_list.parsed.as_ref().unwrap().iter().enumerate() {
+                        prices_guard.insert(updated_data.id.clone(), PriceInfo {
+                            price: updated_data.price,
+                            ema_price: updated_data.ema_price,
                         });
                     }
                     debug!(
@@ -417,8 +410,8 @@ async fn run_source_listener(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::types::{EarlyUpdateConfig, PriceConfig, PriceInfo};
-
+    use crate::types::{EarlyUpdateConfig, PriceConfig};
+    use std::str::FromStr;
     fn create_config(
         id: &str,
         time_diff: u64,

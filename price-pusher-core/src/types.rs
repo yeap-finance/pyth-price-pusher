@@ -1,5 +1,4 @@
 pub use pyth_hermes_client::RpcPrice;
-use pythnet_sdk::messages::PublisherStakeCap;
 use serde::Deserialize;
 
 

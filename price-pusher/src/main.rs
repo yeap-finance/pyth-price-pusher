@@ -2,8 +2,7 @@ use anyhow::{Context, Result};
 use clap::Parser;
 use price_pusher_aptos::AptosChain;
 use price_pusher_core::{config::load_price_config, types::DurationInSeconds, Controller, HermesClient};
-use std::{fs, path::PathBuf, time::Duration};
-use clap::builder::Str;
+use std::{fs, path::PathBuf};
 use tracing::{error, info, debug, Level};
 use tracing_subscriber::FmtSubscriber;
 

@@ -15,7 +15,6 @@ anyhow = { workspace = true }
 hex = { workspace = true }
 base64 = { workspace = true }
 async-trait = { workspace = true }
-pythnet-sdk = { path = "../../pythnet/pythnet_sdk" }
 tempfile = "3.19.1"
 log = { version = "0.4.27", features = [] }
 pyth-hermes-client = { git = "https://github.com/AftermathFinance/aftermath-sdk-rust.git", branch = "main" }
