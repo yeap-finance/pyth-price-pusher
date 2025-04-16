@@ -1,0 +1,24 @@
+[package]
+name = "price-pusher-aptos"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Workspace dependencies
+price-pusher-core = { path = "../price-pusher-core" }
+# aptos = { workspace = true } # Removed workspace dependency
+tokio = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+hex = { workspace = true }
+base64 = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = "1.0"
+serde_bytes = "0.11"
+bcs = "0.1"
+http = "1.0"                       # For StatusCode::NOT_FOUND
+
+# Git dependency for Aptos SDK
+# Pointing to devnet branch as 'main' was not found
+aptos-sdk = { git = "https://github.com/aptos-labs/aptos-core.git", branch = "devnet" }

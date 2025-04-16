@@ -1,0 +1,21 @@
+[package]
+name = "price-pusher"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "price-pusher"
+path = "src/main.rs"
+
+[dependencies]
+# Workspace dependencies
+price-pusher-core = { path = "../price-pusher-core" }
+price-pusher-aptos = { path = "../price-pusher-aptos" }
+tokio = { workspace = true }
+clap = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }
+
+# Other direct dependencies (if any specific to the binary)
+# e.g., dotenvy for reading .env files
